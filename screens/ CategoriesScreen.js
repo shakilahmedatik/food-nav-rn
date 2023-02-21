@@ -4,18 +4,19 @@ import React from 'react'
 import CategoryGridTile from '../components/CategoryGridTile'
 
 const CategoriesScreen = ({ navigation }) => {
-  const pressHandler = () => {
-    navigation.navigate('Meals Overview')
-  }
+  const renderCategoryItem = ({ item }) => {
+    const pressHandler = () => {
+      navigation.navigate('Meals Overview', { categoryId: item.id })
+    }
 
-  const renderCategoryItem = ({ item }) => (
-    <CategoryGridTile
-      title={item.title}
-      color={item.color}
-      onPress={pressHandler}
-    />
-  )
-  console.log(navigation)
+    return (
+      <CategoryGridTile
+        title={item.title}
+        color={item.color}
+        onPress={pressHandler}
+      />
+    )
+  }
   return (
     <FlatList
       data={CATEGORIES}
